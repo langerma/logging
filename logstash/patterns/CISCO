@@ -1,0 +1,4 @@
+CISCOLOGLINE ^<%{POSINT:syslog_pri}>%{POSINT}:%{GREEDYDATA}%{CISCOTIMESTAMP} %{WORD:tz}: %{GREEDYDATA:cisco_log_raw}
+ACLNAME ([\w._/-]+)
+CISCOMNEM (%[\w._/-]+)
+LOGMESSAGE (.*)
