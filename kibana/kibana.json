@@ -1,0 +1,219 @@
+[
+  {
+    "_id": "Squid",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Squid",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"Squid_cache_result_count_time\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":12,\"size_y\":3,\"col\":1,\"row\":1},{\"id\":\"Squid_cache_result_bytes_time\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":12,\"size_y\":3,\"col\":1,\"row\":4},{\"id\":\"Cache_result_byte\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":6,\"size_y\":5,\"col\":1,\"row\":7},{\"id\":\"Squid_TOP_Sites_byte\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":6,\"size_y\":5,\"col\":7,\"row\":7}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "netflow",
+    "_type": "search",
+    "_source": {
+      "title": "netflow",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"logstash-*\",\"key\":\"_type\",\"value\":\"netflow\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"_type\":{\"query\":\"netflow\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "squid",
+    "_type": "search",
+    "_source": {
+      "title": "squid",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"logstash-*\",\"key\":\"type\",\"value\":\"squid\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"type\":{\"query\":\"squid\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_TOP_DST",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_TOP_DST",
+      "visState": "{\n  \"type\": \"pie\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"isDonut\": false\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"filters\",\n      \"schema\": \"split\",\n      \"params\": {\n        \"filters\": [\n          {\n            \"input\": {\n              \"query\": {\n                \"query_string\": {\n                  \"query\": \"type: 'squid'\",\n                  \"analyze_wildcard\": true\n                }\n              }\n            }\n          }\n        ],\n        \"row\": true\n      }\n    },\n    {\n      \"id\": \"3\",\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"dst_host.raw\",\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    }\n  ],\n  \"listeners\": {},\n  \"title\": \"Squid_TOP_DST\"\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"logstash-*\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_Method",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_Method",
+      "visState": "{\n  \"type\": \"pie\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"isDonut\": false\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"filters\",\n      \"schema\": \"split\",\n      \"params\": {\n        \"filters\": [\n          {\n            \"input\": {\n              \"query\": {\n                \"query_string\": {\n                  \"query\": \"type: 'squid'\",\n                  \"analyze_wildcard\": true\n                }\n              }\n            }\n          }\n        ],\n        \"row\": true\n      }\n    },\n    {\n      \"id\": \"3\",\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"http_method.raw\",\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    }\n  ],\n  \"listeners\": {},\n  \"title\": \"Squid_Method\"\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"logstash-*\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_HTTP_Status_Code",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_HTTP_Status_Code",
+      "visState": "{\"title\":\"Squid_TOP_DST\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"filters\",\"schema\":\"split\",\"params\":{\"filters\":[{\"input\":{\"query\":{\"query_string\":{\"query\":\"type: 'squid'\",\"analyze_wildcard\":true}}}}],\"row\":true}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"response_status\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_DST",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_DST",
+      "visState": "{\"type\":\"tile_map\",\"params\":{\"mapType\":\"Scaled Circle Markers\",\"isDesaturated\":false,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"addTooltip\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"type\":\"filters\",\"schema\":\"split\",\"params\":{\"filters\":[{\"input\":{\"query\":{\"query_string\":{\"query\":\"type: 'squid'\",\"analyze_wildcard\":true}}}}],\"row\":true}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"geoip.location\",\"autoPrecision\":true,\"precision\":2}}],\"listeners\":{},\"title\":\"Squid_DST\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_Blocked_Hosts",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_Blocked_Hosts",
+      "visState": "{\n  \"type\": \"histogram\",\n  \"params\": {\n    \"addLegend\": true,\n    \"addTimeMarker\": false,\n    \"addTooltip\": true,\n    \"defaultYExtents\": false,\n    \"mode\": \"stacked\",\n    \"scale\": \"linear\",\n    \"setYExtents\": false,\n    \"shareYAxis\": true,\n    \"spyPerPage\": 10,\n    \"times\": [],\n    \"yAxis\": {}\n  },\n  \"aggs\": [\n    {\n      \"id\": \"3\",\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"src_ip\",\n        \"size\": 100,\n        \"order\": \"desc\",\n        \"orderBy\": \"2\"\n      }\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"4\",\n      \"type\": \"filters\",\n      \"schema\": \"split\",\n      \"params\": {\n        \"filters\": [\n          {\n            \"input\": {\n              \"query\": {\n                \"query_string\": {\n                  \"analyze_wildcard\": true,\n                  \"query\": \"squid_request_status: 'TCP_DENIED_REPLY'\"\n                }\n              }\n            }\n          }\n        ],\n        \"row\": true\n      }\n    },\n    {\n      \"id\": \"5\",\n      \"type\": \"terms\",\n      \"schema\": \"group\",\n      \"params\": {\n        \"field\": \"dst_host\",\n        \"exclude\": {\n          \"flags\": [\n            \"CASE_INSENSITIVE\"\n          ],\n          \"pattern\": \"scorecardresearch.com|udm.scorecardresearch.com\"\n        },\n        \"size\": 50,\n        \"order\": \"desc\",\n        \"orderBy\": \"2\"\n      }\n    }\n  ],\n  \"listeners\": {},\n  \"title\": \"Squid_Blocked_Hosts\"\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"logstash-*\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"TCP_DENIED_REPLY\"\n    }\n  },\n  \"filter\": [\n    {\n      \"meta\": {\n        \"disabled\": false,\n        \"index\": \"logstash-*\",\n        \"key\": \"dst_host.raw\",\n        \"negate\": true,\n        \"value\": \"b.scorecardresearch.com\"\n      },\n      \"query\": {\n        \"match\": {\n          \"dst_host\": {\n            \"query\": \"b.scorecardresearch.com\",\n            \"type\": \"phrase\"\n          }\n        }\n      }\n    }\n  ]\n}"
+      }
+    }
+  },
+  {
+    "_id": "Netflow_Out_Bytes",
+    "_type": "visualization",
+    "_source": {
+      "title": "Netflow_Out_Bytes",
+      "visState": "{\"title\":\"Netflow_Out_Bytes\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"netflow.in_bytes\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"out_bytes\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"netflow.ipv4_dst_addr.raw\",\"size\":10,\"orderAgg\":{\"id\":\"3-orderAgg\",\"type\":\"sum\",\"schema\":\"orderAgg\",\"params\":{\"field\":\"netflow.in_bytes\"}},\"order\":\"desc\",\"orderBy\":\"custom\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "netflow",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_cache_result_bytes_time",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_cache_result_bytes_time",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"response_size\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"significant_terms\",\"schema\":\"group\",\"params\":{\"field\":\"cache_result.raw\",\"size\":15}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "squid",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_cache_result_count_time",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_cache_result_count_time",
+      "visState": "{\"title\":\"Squid_cache_result_bytes_time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"significant_terms\",\"schema\":\"group\",\"params\":{\"field\":\"cache_result.raw\",\"size\":15}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "squid",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_TOP_Sites_byte",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_TOP_Sites_byte",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"response_size\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"dst_host.raw\",\"size\":15,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "squid",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Squid_content_bytes",
+    "_type": "visualization",
+    "_source": {
+      "title": "Squid_content_bytes",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"response_size\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"content_type.raw\",\"size\":15,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "squid",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Cache_result_byte",
+    "_type": "visualization",
+    "_source": {
+      "title": "Cache_result_byte",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"response_size\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"cache_result.raw\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "squid",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  }
+]
